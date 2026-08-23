@@ -478,6 +478,59 @@
       margin-bottom: 15px;
       line-height: 1.5;
     }
+    /* MODAL / LEGAL PAGES STYLES */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: #ffffff;
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+  }
+
+  .modal-body h2 {
+    color: var(--header-green);
+    margin-bottom: 12px;
+  }
+
+  .modal-body p, .modal-body ul {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 12px;
+  }
     /* SIMPLE FOOTER STYLES */
   .site-footer {
     background-color: var(--header-dark);
@@ -1462,7 +1515,45 @@
     });
 
     renderCards(duroodDatabase);
+    const legalPagesContent = {
+    privacy: `
+      <h2>Privacy Policy</h2>
+      <p>At <strong>Guldasta-e-Durood Shareef</strong> (duroodshareef.in), accessible from https://duroodshareef.in, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by duroodshareef.in and how we use it.</p>
+      <p><strong>Third Party Advertising & Google AdSense:</strong> Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to our website or other websites. Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to our sites and/or other sites on the Internet.</p>
+      <p>Users may opt out of personalized advertising by visiting Google's Ad Settings.</p>
+      <p><strong>Log Files:</strong> duroodshareef.in follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this as part of hosting services' analytics.</p>
+    `,
+    about: `
+      <h2>About Us</h2>
+      <p>Welcome to <strong>Guldasta-e-Durood Shareef</strong>, a dedicated digital treasury designed to help Muslims worldwide read, recite, and keep track of authentic Salawat upon Prophet Muhammad ﷺ.</p>
+      <p>Our platform provides original Arabic text, clear English transliteration, Urdu translations, and a simple digital tasbeeh counter to facilitate daily remembrance and recitation.</p>
+    `,
+    contact: `
+      <h2>Contact Us</h2>
+      <p>If you have any questions, feedback, or suggestions regarding our content, feel free to reach out to us:</p>
+      <p><strong>Email:</strong> contact@duroodshareef.in</p>
+      <p><strong>Website:</strong> https://duroodshareef.in</p>
+    `
+  };
+
+  function openLegalModal(page) {
+    const modal = document.getElementById('legal-modal');
+    const contentBox = document.getElementById('modal-body-content');
+    contentBox.innerHTML = legalPagesContent[page] || '';
+    modal.classList.add('active');
+  }
+
+  function closeLegalModal() {
+    document.getElementById('legal-modal').classList.remove('active');
+  }
   </script>
+  <!-- LEGAL MODAL -->
+  <div id="legal-modal" class="modal-overlay" onclick="closeLegalModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeLegalModal()">&times;</button>
+      <div id="modal-body-content" class="modal-body"></div>
+    </div>
+  </div>
 </body>
  <footer class="site-footer" role="contentinfo">
     <div class="footer-container">
@@ -1484,6 +1575,11 @@
 
     <!-- Copyright Section -->
     <div class="footer-bottom">
+      <p style="margin-bottom: 8px;">
+        <a href="javascript:void(0)" onclick="openLegalModal('privacy')" style="color: #a7f3d0; text-decoration: none; margin: 0 10px;">Privacy Policy</a> | 
+        <a href="javascript:void(0)" onclick="openLegalModal('about')" style="color: #a7f3d0; text-decoration: none; margin: 0 10px;">About Us</a> | 
+        <a href="javascript:void(0)" onclick="openLegalModal('contact')" style="color: #a7f3d0; text-decoration: none; margin: 0 10px;">Contact Us</a>
+      </p>
       <p>&copy; 2026 Guldasta-e-Durood Shareef. Built for global Islamic community benefit.</p>
     </div>
   </footer>
