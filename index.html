@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guldasta-e-Durood & Salawat Treasury</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --header-green: #065f46;
+      --header-dark: #044e38;
+      --gold-accent: #f59e0b;
+      --gold-light: #fef3c7;
+      --bg-cream: #fefce8;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-green: #059669;
+      --arabic-size: 2.2rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* -------------------------------------------------------------
+       1. TECHFEST STYLE ENTRANCE SCREEN (EARN SAWAB)
+    ------------------------------------------------------------- */
+    #entrance-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #033626 0%, var(--header-green) 100%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      color: #fff;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+    }
+
+    #entrance-screen.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .entrance-badge {
+      background: #fef08a;
+      color: #854d0e;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .entrance-calligraphy {
+      font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: #fef08a;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .entrance-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    .entrance-subtitle {
+      font-size: 1.15rem;
+      max-width: 620px;
+      color: #d1fae5;
+      margin-bottom: 35px;
+      line-height: 1.6;
+    }
+
+    .btn-enter {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #ffffff;
+      border: 2px solid #fef08a;
+      padding: 16px 44px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-enter:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(245, 158, 11, 0.6);
+    }
+
+    .enter-hint {
+      margin-top: 22px;
+      font-size: 0.88rem;
+      color: #a7f3d0;
+    }
+
+    .enter-hint kbd {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid #fef08a;
+      color: #fef08a;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-weight: 600;
+    }
+
+    /* -------------------------------------------------------------
+       2. HEADER BANNER
+    ------------------------------------------------------------- */
+    .header-banner {
+      background: var(--header-green);
+      color: white;
+      text-align: center;
+      padding: 50px 20px 80px 20px;
+      border-bottom: 6px solid var(--gold-accent);
+      position: relative;
+    }
+
+    .bismillah {
+      font-family: 'Amiri', serif;
+      font-size: 2.2rem;
+      color: #fef08a;
+      margin-bottom: 6px;
+    }
+
+    .urdu-title {
+      font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
+      font-size: 2.8rem;
+      color: #fef08a;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .main-subtitle {
+      font-size: 0.95rem;
+      color: #d1fae5;
+      font-style: italic;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* -------------------------------------------------------------
+       3. CONTROLS CONTAINER
+    ------------------------------------------------------------- */
+    .main-container {
+      max-width: 1240px;
+      margin: -40px auto 60px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .search-bar-container {
+      background: #ffffff;
+      border-radius: 50px;
+      padding: 12px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .search-input-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-input-box i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+    }
+
+    .search-input-box input {
+      width: 100%;
+      padding: 10px 16px 10px 45px;
+      border: 1px solid #e5e7eb;
+      border-radius: 50px;
+      outline: none;
+      font-size: 0.95rem;
+      background: #ffffff;
+    }
+
+    .search-input-box input:focus {
+      border-color: var(--border-green);
+    }
+
+    .pills-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      padding: 8px 18px;
+      border-radius: 50px;
+      border: 1px solid transparent;
+      background: #f3f4f6;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pill-btn.active {
+      background: var(--header-green);
+      color: white;
+    }
+
+    .font-resizer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .size-btn {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    /* -------------------------------------------------------------
+       4. CARDS GRID
+    ------------------------------------------------------------- */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 30px 0 18px 0;
+      font-size: 0.85rem;
+      color: var(--header-green);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(540px, 1fr));
+      gap: 25px;
+    }
+
+    @media (max-width: 640px) {
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+
+    .durood-card {
+      background: var(--card-bg);
+      border: 2px dashed #059669;
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s ease;
+    }
+
+    .durood-card:hover {
+      box-shadow: 0 10px 25px rgba(6, 95, 70, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* CORNER STAR ACCENTS */
+    .durood-card::before, .durood-card::after {
+      content: "✦";
+      position: absolute;
+      color: var(--gold-accent);
+      font-size: 1.1rem;
+    }
+    .durood-card::before { top: 6px; left: 10px; }
+    .durood-card::after { top: 6px; right: 10px; }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .tag-number {
+      background: #fef3c7;
+      color: #b45309;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid #fde68a;
+    }
+
+    .actions-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-badge {
+      border: 1px solid #d1fae5;
+      background: #ecfdf5;
+      color: #065f46;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-counter-badge {
+      background: #fef3c7;
+      color: #92400e;
+      border-color: #fde68a;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 15px;
+    }
+
+    .arabic-display {
+      font-family: 'Amiri', serif;
+      font-size: var(--arabic-size);
+      line-height: 2.3;
+      direction: rtl;
+      text-align: right;
+      color: #064e3b;
+      background: #f0fdf4;
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid #d1fae5;
+      margin-bottom: 15px;
+    }
+
+    .transliteration {
+      font-size: 0.95rem;
+      color: var(--header-green);
+      font-style: italic;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .translation {
+      font-size: 0.9rem;
+      color: #374151;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. TECHFEST ENTRANCE SCREEN -->
+  <div id="entrance-screen">
+    <div class="entrance-badge">✨ Earn Eternal Sawab ✨</div>
+    <div class="entrance-calligraphy">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    <div class="entrance-title">Guldasta-e-Durood Shareef</div>
+    <p class="entrance-subtitle">
+      Step in to send salutations upon Prophet Muhammad ﷺ. Recite, track your recitations, and earn sawab with every word.
+    </p>
+    <button class="btn-enter" id="enter-btn">
+      ENTER EXPERIENCE <i class="fa-solid fa-arrow-right"></i>
+    </button>
+    <p class="enter-hint">Or Press <kbd>ENTER</kbd> on your keyboard</p>
+  </div>
+
+  <!-- 2. HEADER BANNER -->
+  <header class="header-banner">
+    <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+    <div class="urdu-title">گلدستہ درود شریف</div>
+    <h1 class="main-title">Durood Shareef & Salawat Treasury</h1>
+    <p class="main-subtitle">A digital repository of authentic salutations upon Prophet Muhammad ﷺ with transliteration, translation, and virtues.</p>
+  </header>
+
+  <!-- 3. MAIN CONTROLS & CONTENT -->
+  <div class="main-container">
+    <div class="search-bar-container">
+      <div class="search-input-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-input" placeholder="Search Durood by name or keyword..." />
+      </div>
+
+      <div class="pills-group">
+        <button class="pill-btn active" data-tag="all">All Salawat</button>
+        <button class="pill-btn" data-tag="popular">Most Recited</button>
+        <button class="pill-btn" data-tag="protection">Protection & Shifa</button>
+      </div>
+
+      <div class="font-resizer">
+        Arabic Size:
+        <button class="size-btn" onclick="adjustArabicSize(-2)">A-</button>
+        <button class="size-btn" onclick="adjustArabicSize(2)">A+</button>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <span id="showing-count">SHOWING 85 SALAWAT RECITATIONS</span>
+      <span style="color: var(--text-muted); font-weight: normal;">Tap counter badge on card to count your recitations</span>
+    </div>
+
+    <div class="cards-grid" id="cards-container"></div>
+  </div>
+
+  <script>
+    /* DATABASE */
+    const duroodDatabase = [
+      {
+        id: 1,
+        title: "Durood-e-Taj Shareef",
+        tags: ["popular", "protection"],
+        arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا وَمَوْلاَنَا مُحَمَّدٍ صَاحِبِ التَّاجِ وَالْمِعْرَاجِ وَالْبُرَاقِ وَالْعَلَمِ",
+        transliteration: "Allahumma salli 'ala Sayyidina wa Mawlana Muhammadin sahibi at-taji wal-mi'raji wal-buraqi wal-'alam.",
+        translation: "O Allah, send blessings upon our Master and Patron Muhammad, the possessor of the Crown, the Ascension, the Buraq, and the Banner."
+      },
+      {
+        id: 2,
+        title: "Durood-e-Ibrahimi",
+        tags: ["popular"],
+        arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ",
+        transliteration: "Allahumma salli 'ala Muhammadin wa 'ala ali Muhammadin kama sallayta 'ala Ibrahima wa 'ala ali Ibrahima innaka Hamidun Majid.",
+        translation: "O Allah, send blessings upon Muhammad and upon the family of Muhammad, as You sent blessings upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious."
+      },
+           {
+        id: 3,
+        title: "Durood-e-Tunajjina (Tanjina)",
+        tags: ["popular", "protection"],
+        arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَلاَةً تُنْجِينَا بِهَا مِنْ جَمِيعِ الأَهْوَالِ وَالأَفَاتِ وَتَقْضِي لَنَا بِهَا جَمِيعَ الحَاجَاتِ وَتُطَهِّرُنَا بِهَا مِنْ جَمِيعِ السَّيِّئَاتِ",
+        transliteration: "Allahumma salli 'ala Sayyidina Muhammadin salatan tunjina biha min jami'il-ahwali wal-afat, wa taqdi lana biha jami'al-hajat, wa tutahiruna biha min jami'is-sayyi'at.",
+        translation: "O Allah, send blessings upon our Master Muhammad, such blessings through which You deliver us from all terrors and misfortunes, fulfill all our needs, and cleanse us from all sins.",
+        virtue: "Recited for emergency relief during trials, safety in travel, and fulfillment of urgent needs."
+      },
+      {
+        id: 4,
+        title: "Durood-e-Fath",
+        tags: ["popular"],
+        arabic: "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى سَيِّدِنَا مُحَمَّدٍ الْفَاتِحِ لِمَا أُغْلِقَ وَالْخَاتِمِ لِمَا سَبَقَ نَاصِرِ الْحَقِّ بِالْحَقِّ وَالْهَادِي إِلَى صِرَاطِكَ الْمُسْتَقِيمِ",
+        transliteration: "ALLAHUMMA SALLI WASALLIM WABARIK ALA SAYYIDINA MUHAMMADINIL FAATIHI LIMA UGHLIQA WAL KHAATIMI LIMA SABAKA WAN NAASIRIL HAQQA BIL HAQQI WAL HAADI ILA SIRAATIKAL MUSTAQEEMI.",
+        translation: "O Allah! May Your grace, peace, and blessings rest on Muhammad, our Master, who opens that which was closed, finishes what preceded, and helps the truth with truth.",
+        virtue: "Opens closed doors, removes spiritual blockages, and grants success in difficult matters."
+      },
+      {
+        id: 5,
+        title: "Durood-e-Nariya (Salawat al-Nariyah)",
+        tags: ["protection"],
+        arabic: "اللَّهُمَّ صَلِّ صَلاَةً كَامِلَةً وَسَلِّمْ سَلاَماً تَامّاً عَلَى سَيِّدِنَا مُحَمَّدٍ الَّذِي تَنْحَلُّ بِهِ الْعُقَدُ وَتَنْفَرِجُ بِهِ الْكُرَبُ وَتُقْضَى بِهِ الْحَوَائِجُ",
+        transliteration: "Allahumma salli salatan kamilatan wa sallim salaman tamman 'ala Sayyidina Muhammadin alladhi tanhallu bihil 'uqadu wa tanfariju bihil kurabu wa tuqda bihil hawa'ij.",
+        translation: "O Allah, grant complete blessings and perfect peace upon our Master Muhammad, by whom knots are untied, distresses are relieved, and needs are fulfilled.",
+        virtue: "Widely known across the Muslim world as the 'Fiery Salawat' for rapid relief from hardship."
+      },
+      {
+        id: 6,
+        title: "Durood-e-Dawaami",
+        tags: ["popular"],
+        arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِ سَيِّدِنَا مُحَمَّدٍ عَدَدَ مَا فِي عِلْمِ اللَّهِ صَلاَةً دَائِمَةً بِدَوَامِ مُلْكِ اللَّهِ",
+        transliteration: "ALLAHUMMA SALLI ALA SAYYIDINA MUHAMMADIW WA ALA AALI SAYYIDINA MUHAMMADIN ADADA MA FI ILMIL LAAHI SALAWAATAN DAA'IMATAN BIDAWAAMI MULKILLAH.",
+        translation: "O Allah! Shower blessings on Muhammad, our master, equal to the number of things in Your knowledge—blessings as eternal as Your Kingdom.",
+        virtue: "Grants reward equivalent to continuous, non-stop recitation of Salawat."
+      },
+      {
+        id: 7,
+        title: "Durood-e-Sadaqah",
+        tags: ["popular"],
+        arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ عَبْدِكَ وَرَسُولِكَ وَصَلِّ عَلَى الْمُؤْمِنِينَ وَالْمُؤْمِنَاتِ وَالْمُسْلِمِينَ وَالْمُسْلِمَاتِ",
+        transliteration: "ALLAHUMMA SALLI ALA MUHAMMADIN ABDIKA WA RASOOLIKA WA SALLI ALAL MU'MINEENA WAL MU'MINAATI WAL MUSLIMEENA WAL MUSLIMAATI.",
+        translation: "O Allah! Shower Your blessings on Muhammad, Your servant and Messenger, and shower blessings on all believing men and women.",
+        virtue: "Acts as a spiritual charity (Sadaqah) for those who cannot afford physical charity."
+      },
+      {
+        id: 8,
+        title: "Durood-e-Ali",
+        tags: ["popular"],
+        arabic: "اللَّهُمَّ اجْعَلْ صَلَوَاتِكَ وَبَرَكَاتِكَ عَلَى مُحَمَّدٍ النَّبِيِّ وَأَزْوَاجِهِ أُمَّهَاتِ الْمُؤْمِنِينَ وَذُرِّيَّتِهِ وَأَهْلِ بَيْتِهِ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ",
+        transliteration: "ALLHUMMAJ AL SALAWAATIKA WA BARAKAATIKA ALA MUHAMMADININ NABI YI WA AZWAAJIHI UMMAHAATIL MU'MINEENA WAZURRIYATIHI WA AHLI BAYTIHI KAMA SALLAYTA ALA IBRAHIMA.",
+        translation: "O Allah! Bestow blessing and bounty on our Prophet, his wives (Mothers of Believers), his descendants, and Household as You conferred on Ibrahim.",
+        virtue: "Attributed to Hazrat Ali (R.A.), carrying deep blessings for the Ahle Bait."
+      },
+      {
+        id: 9,
+        title: "Durood-e-Roohi",
+        tags: ["popular"],
+        arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ مَا دَامَتِ الصَّلَوَاتُ وَصَلِّ عَلَى مُحَمَّدٍ مَا دَامَتِ الرَّحْمَةُ وَصَلِّ عَلَى رُوحِ مُحَمَّدٍ فِي الأَرْوَاحِ",
+        transliteration: "ALLAHUMMA SALLI ALA MUHAMMADIM MA DAAMATIS SALAWAATU WAS SALLI ALA MUHAMMADIM MADAAMATIR RAHMATI WA SALLI ALA RUHI MUHAMMADIN FIL ARWAH.",
+        translation: "O Allah! Shower blessings on Muhammad as long as blessings continue, and send peace upon the soul of Muhammad among all souls.",
+        virtue: "Nourishes the soul and increases spiritual closeness to the Prophet ﷺ."
+      },
+      {
+        id: 10,
+        title: "Durood-e-Noor",
+        tags: ["protection"],
+        arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ نُورِ الأَنْوَارِ وَسِرِّ الأَسْرَارِ وَتِرْيَاقِ الأَغْيَارِ وَمِفْتَاحِ بَابِ الْيَسَارِ",
+        transliteration: "Allahumma salli 'ala Sayyidina Muhammadin nuril anwar wa sirril asrar wa tiryaqil aghyar wa miftahi babil yasar.",
+        translation: "O Allah, send blessings upon our Master Muhammad, the light of lights, the secret of secrets, the cure for spiritual ailments, and the key to ease.",
+        virtue: "Illuminates the heart, clears confusion, and eases difficulties."
+      },
+      // Part 2 Dataset: Add these items directly inside your duroodDatabase array
+{
+  id: 11,
+  title: "Durood-e-Ghausiya",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا وَمَوْلاَنَا مُحَمَّدٍ مَعْدِنِ الْجُودِ وَالْكَرَمِ وَآلِهِ وَبَارِكْ وَسَلِّمْ",
+  transliteration: "ALLAHUMMA SALLI WASALLIM 'ALA SAYYIDINA WA MAULANA MUHAMMADIN MA'ADINIL JUDI WAL KARAMI WA AALEHI WA BAARIK WASALLIM.",
+  translation: "O Allah! Send peace, blessings, and salutations upon our Master and Patron Muhammad, the mine of generosity and grace, and upon his Family.",
+  virtue: "Associated with Sheikh Abdul Qadir Jilani (R.A.). Recited for spiritual purification and attainment of divine favor."
+},
+{
+  id: 12,
+  title: "Durood-e-Alfi",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ بِعَدَدِ كُلِّ ذَرَّةٍ مِائَةَ أَلْفِ أَلْفِ مَرَّةٍ وَبَارِكْ وَسَلِّمْ",
+  transliteration: "ALLAHUMA SALLI ALA MUHAMMADIW WA ALA AALI MUHAMMADIN BI ADADI KULLI ZARRATIM MAA'ATA ALFIN ALFA MARRATIW WABAARIK WA SALLIM.",
+  translation: "O Allah! May Your beneficence be upon Muhammad and the House of Muhammad equal to a millionfold of every atom created by You.",
+  virtue: "Carries the immense reward equal to reciting thousands of salutations in a single breath."
+},
+{
+  id: 13,
+  title: "Durood-e-Wali",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ النَّبِيِّ الأُمِّيِّ وَآلِهِ وَبَارِكْ وَسَلِّمْ",
+  transliteration: "ALLAHUMMA SALLI ALA MUHAMMADININ NABI YIL UMMI YI WA AALIHI WABAARIK WA SALLIM.",
+  translation: "O Allah! Send blessings on Muhammad, our Chief, the Unlettered Prophet, and upon his Family; grant favors and salutations.",
+  virtue: "A concise yet powerful Durood recommended by saints for daily morning and evening tasbeeh."
+},
+{
+  id: 14,
+  title: "Durood-e-Tayyab",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ عَبْدِكَ وَرَسُولِكَ النَّبِيِّ الأُمِّيِّ وَعَلَى آلِ مُحَمَّدٍ صَلاَةً تَكُونُ لَكَ رِضَاءً وَلَهُ جَزَاءً",
+  transliteration: "ALLAHUMMA SALLI ALA MUHAMMADIN ABDIKA WA RASOOLIKAN NABBIYIL UMMIYI WA ALAAA AALI MUHAMMADIN SALAWAATAN TAKUNU LAKA RIDAW WALAHU JAZAAA'AW.",
+  translation: "O Allah! Shower Your beneficence on Muhammad, Your servant and Messenger, and upon his House—blessings that earn Your pleasure.",
+  virtue: "Recited to earn the divine pleasure of Allah and the intercession of the Prophet ﷺ."
+},
+{
+  id: 15,
+  title: "Durood-e-Qur'ani",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِهِ وَأَصْحَابِهِ بِعَدَدِ مَا فِي جَمِيعِ الْقُرْآنِ حَرْفاً حَرْفاً وَبِعَدَدِ كُلِّ حَرْفٍ أَلْفاً أَلْفاً",
+  transliteration: "Allahumma salli wa sallim 'ala Sayyidina Muhammadin wa 'ala alihi wa as-habihi bi 'adadi ma fi jami'il Qur'ani harfan harfa wa bi 'adadi kulli harfin alfa alfa.",
+  translation: "O Allah! Send blessings upon our Master Muhammad, his Family, and Companions equal to every letter in the Quran, multiplied a million times.",
+  virtue: "Brings the immense barakah of the Holy Quran into one's heart and home."
+},
+{
+  id: 16,
+  title: "Durood-e-Shafi'i",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ كُلَّمَا ذَكَرَهُ الذَّاكِرُونَ وَصَلِّ عَلَى مُحَمَّدٍ كُلَّمَا غَفَلَ عَنْ ذِكْرِهِ الْغَافِلُونَ",
+  transliteration: "Allahumma salli 'ala Muhammadin kullama dhakarahudh-dhakirun, wa salli 'ala Muhammadin kullama ghafala 'an dhikrihil-ghafilun.",
+  translation: "O Allah! Send blessings upon Muhammad whenever he is remembered by those who remember, and whenever he is neglected by the heedless.",
+  virtue: "Formulated by Imam al-Shafi'i (R.A.); guarantees perpetual salutations continuous with time."
+},
+{
+  id: 17,
+  title: "Durood-e-Radawiyya",
+  tags: ["popular"],
+  arabic: "صَلَّى اللَّهُ عَلَى النَّبِيِّ الأُمِّيِّ وَآلِهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ صَلاَةً وَسَلاَماً عَلَيْكَ يَا رَسُولَ اللَّهِ",
+  transliteration: "Sallallahu 'alan-Nabiyyil-Ummiyyi wa aalihi Sallallahu 'alaihi wa sallam, Salatan wa Salaman 'alaika ya Rasoolallah.",
+  translation: "May Allah send blessings upon the Unlettered Prophet and his Family. Peace and blessings be upon you, O Messenger of Allah.",
+  virtue: "Promoted by Imam Ahmed Raza Khan; ideal for reciting 100 times after Jummah prayer for peace and barakah."
+},
+{
+  id: 18,
+  title: "Durood-e-Maqbool",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ صَلاَةً تَكُونُ لَكَ رِضَاءً وَلِحَقِّهِ أَدَاءً",
+  transliteration: "Allahumma salli 'ala Muhammadin salatan takunu laka ridan wa li-haqqihi adaa'a.",
+  translation: "O Allah, send blessings upon Muhammad, such blessings that fulfill Your pleasure and discharge his rightful due upon us.",
+  virtue: "A brief salawat designed specifically for instant acceptance (*Maqbooliyat*) of supplications."
+},
+{
+  id: 19,
+  title: "Durood-e-Akbar",
+  tags: ["popular", "protection"],
+  arabic: "اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ المَوْصُوفِ بِالْكَرَمِ وَالْجُودِ ، وَصَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ المَخْصُوصِ بِالمَقَامِ المَحْمُودِ",
+  transliteration: "Allahumma salli wa sallim 'ala Sayyidina Muhammadin al-mawsufi bil karami wal jud, wa salli 'ala Sayyidina Muhammadin al-makhsusi bil Maqamil Mahmud.",
+  translation: "O Allah! Send blessings upon our Master Muhammad, characterized by grace and generosity, granted the exalted Station of Praise (Maqam al-Mahmud).",
+  virtue: "A grand Durood praised by spiritual scholars for attaining the intercession of the Prophet ﷺ."
+},
+{
+  id: 20,
+  title: "Durood-e-Khas",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ عَبْدِكَ وَنَبِيِّكَ وَرَسُولِكَ النَّبِيِّ الأُمِّيِّ وَعَلَى آلِهِ وَسَلِّمْ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin 'abdika wa nabiyyika wa rasoolikan-nabiyyil-ummiyyi wa 'ala alihi wa sallim.",
+  translation: "O Allah! Send blessings on our Master Muhammad, Your servant, Prophet, and Unlettered Messenger, and upon his Family.",
+  virtue: "A special daily salawat recited for spiritual enlightenment and internal tranquility."
+},
+{
+  id: 21,
+  title: "Durood-e-Kamalia",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِهِ كَمَا لاَ نِهَايَةَ لِكَمَالِكَ وَعَدَدَ كَمَالِهِ",
+  transliteration: "Allahumma salli wa sallim wa barik 'ala Sayyidina Muhammadin wa 'ala alihi kama la nihayata li-kamalika wa 'adada kamalih.",
+  translation: "O Allah! Send blessings, peace, and bounties upon our Master Muhammad and his Family, as endless as Your perfection and equal to his perfection.",
+  virtue: "Reciting this 70 times after Isha brings immense reward and guards against spiritual forgetfulness."
+},
+{
+  id: 22,
+  title: "Durood-e-Shifa (Durood-e-Tibb)",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ طِبِّ الْقُلُوبِ وَدَوَائِهَا وَعَافِيَةِ الأَبْدَانِ وَشِفَائِهَا وَنُورِ الأَبْصَارِ وَضِيَائِهَا",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin tibbil qulubi wa dawaiha, wa 'afiyatil abdani wa shifaiha, wa nuril absari wa diyaiha.",
+  translation: "O Allah! Send blessings upon our Master Muhammad, the medicine of hearts and their cure, the health of bodies and their healing, the light of eyes and their brightness.",
+  virtue: "Widely recited for physical illness, mental anxiety, and emotional healing (*Shifa*)."
+},
+{
+  id: 23,
+  title: "Durood-e-In'am",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِهِ عَدَدَ إِنْعَامِ اللَّهِ وَإِفْضَالِهِ",
+  transliteration: "Allahumma salli wa sallim 'ala Sayyidina Muhammadin wa 'ala alihi 'adada in'amillahi wa ifdalih.",
+  translation: "O Allah! Send blessings and peace upon our Master Muhammad and his Family according to the count of Allah's favors and bounties.",
+  virtue: "Invokes Allah's infinite favors and brings abundance (*Barakah*) in sustenance."
+},
+{
+  id: 24,
+  title: "Durood-e-Aali",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ النَّبِيِّ الْعَالِي الْقَدْرِ الْعَظِيمِ الْجَاهِ وَعَلَى آلِهِ وَصَحْبِهِ وَسَلِّمْ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin an-nabiyyil 'alil-qadri 'azimil-jahi wa 'ala alihi wa sahbihi wa sallim.",
+  translation: "O Allah! Send blessings upon our Master Muhammad, the Prophet of high rank and supreme status, and upon his Family and Companions.",
+  virtue: "Recited on Friday nights for protection from evil and elevating one's rank in the hereafter."
+},
+{
+  id: 25,
+  title: "Durood-e-Awliya",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ فِي الأَوَّلِينَ وَصَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ فِي الآخِرِينَ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin fil-awwalin, wa salli 'ala Sayyidina Muhammadin fil-akhirin.",
+  translation: "O Allah! Send blessings upon our Master Muhammad among the ancients, and send blessings upon our Master Muhammad among the moderns.",
+  virtue: "The traditional salawat practiced by early righteous predecessors (*Awliya*)."
+},
+{
+  id: 26,
+  title: "Durood-e-Hubb-e-Rasool",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ كَمَا تُحِبُّ وَتَرْضَى لَهُ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin kama tuhibbu wa tarda lah.",
+  translation: "O Allah! Send blessings upon our Master Muhammad in the manner You love and are pleased with for him.",
+  virtue: "Short and potent; increases true love and devotion (*Hubb*) for Prophet Muhammad ﷺ."
+},
+{
+  id: 27,
+  title: "Durood-e-Sa'aadat",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ عَدَدَ مَا فِي عِلْمِ اللَّهِ صَلاَةً دَائِمَةً بِدَوَامِ مُلْكِ اللَّهِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin 'adada ma fi 'ilmillahi salatan da'imatan bi-dawami mulkillah.",
+  translation: "O Allah! Send blessings upon our Master Muhammad to the extent of what is in Allah's Knowledge, an everlasting blessing lasting with Allah's Kingdom.",
+  virtue: "Reciting this once yields the spiritual reward equal to reciting 500,000 Salawat."
+},
+{
+  id: 28,
+  title: "Durood-e-Nahar",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَلاَةً تَمْلأُ خَزَائِنَ اللَّهِ نُوراً وَتَكُونُ لَنَا وَلِلْمُؤْمِنِينَ فَرَجاً وَفَرَحاً",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin salatan tamla'u khaza'inallahi nuran wa takunu lana wa lil-mu'minina farajan wa faraha.",
+  translation: "O Allah! Send blessings on our Master Muhammad, blessings that fill Allah's treasures with light and bring relief and joy to us and all believers.",
+  virtue: "Recited at dawn for day-long protection from anxiety and hardship."
+},
+{
+  id: 29,
+  title: "Durood-e-Mustajab",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَأَنْزِلْهُ الْمَقْعَدَ الْمُقَرَّبَ عِنْدَكَ يَوْمَ الْقِيَامَةِ",
+  transliteration: "Allahumma salli 'ala Muhammadin wa anzilhul-maq'adal-muqarraba 'indaka yawmal-qiyamah.",
+  translation: "O Allah! Send blessings upon Muhammad and accord him the station of near proximity with You on the Day of Resurrection.",
+  virtue: "Guarantees the intercession (*Shafa'at*) of the Prophet ﷺ on Judgment Day."
+},
+{
+  id: 30,
+  title: "Durood-e-Kibriyat al-Ahmar",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ جَامِعِ الأَسْرَارِ وَمَخْزَنِ الأَنْوَارِ",
+  transliteration: "Allahumma salli wa sallim 'ala Sayyidina Muhammadin jami'il-asrar wa makhzanil-anwar.",
+  translation: "O Allah! Send peace and blessings upon our Master Muhammad, the gatherer of divine secrets and the storehouse of lights.",
+  virtue: "Known as the 'Red Sulphur' Salawat for its immense spiritual rarity and power."
+},
+// Part 3 Dataset: Add these items directly inside your duroodDatabase array
+{
+  id: 31,
+  title: "Durood-e-Shafa'at",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَأَنْزِلْهُ الْمَقْعَدَ الْمُقَرَّبَ عِنْدَكَ يَوْمَ الْقِيَامَةِ",
+  transliteration: "Allahumma salli 'ala Muhammadin wa anzilhul-maq'adal-muqarraba 'indaka yawmal-qiyamah.",
+  translation: "O Allah, send blessings upon Muhammad and assign him the station of closeness to You on the Day of Resurrection.",
+  virtue: "The Holy Prophet ﷺ mentioned that whoever recites this Durood, my intercession (Shafa'at) becomes obligatory for him."
+},
+{
+  id: 32,
+  title: "Durood-e-Mahi",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ نُورِ الأَنْوَارِ وَسِرِّ الأَسْرَارِ وَسَيِّدِ الأَبْرَارِ",
+  transliteration: "Allahumma salli 'ala Muhammadin nuril-anwari wa sirril-asrari wa sayyidil-abrar.",
+  translation: "O Allah, send blessings upon Muhammad, the light of all lights, the secret of secrets, and the master of the righteous.",
+  virtue: "Traditionally recited for safety from enemies, relief from spiritual burdens, and divine protection."
+},
+{
+  id: 33,
+  title: "Durood-e-Maghfirat",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا وَمَوْلاَنَا مُحَمَّدٍ وَعَلَى آلِهِ وَسَلِّمْ",
+  transliteration: "Allahumma salli 'ala Sayyidina wa Maulana Muhammadin wa 'ala alihi wa sallim.",
+  translation: "O Allah, send blessings and peace upon our Master and Leader Muhammad and upon his Family.",
+  virtue: "If recited while standing, sins are forgiven before sitting down; if recited while sitting, sins are forgiven before standing up."
+},
+{
+  id: 34,
+  title: "Durood-e-Kausar",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ فِي الأَوَّلِينَ وَالصَّلاَةُ عَلَى مُحَمَّدٍ فِي الآخِرِينَ وَالصَّلاَةُ عَلَى مُحَمَّدٍ فِي النَّبِيِّينَ",
+  transliteration: "Allahumma salli 'ala Muhammadin fil-awwalin, was-salatu 'ala Muhammadin fil-akhirin, was-salatu 'ala Muhammadin fin-nabiyyin.",
+  translation: "O Allah, send blessings upon Muhammad among the ancients, send blessings upon Muhammad among the moderns, and send blessings upon Muhammad among all Prophets.",
+  virtue: "Brings spiritual connection to the blessed Abode and the Fountain of Kausar."
+},
+{
+  id: 35,
+  title: "Durood-e-Rauf",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ الرَّؤُوفِ الرَّحِيمِ بِالْمُؤْمِنِينَ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin ar-Ra'ufir-Rahimi bil-mu'minin.",
+  translation: "O Allah, send blessings upon our Master Muhammad, who is compassionate and merciful towards the believers.",
+  virtue: "Softens the heart, eliminates harshness, and brings peace and harmony into family life."
+},
+{
+  id: 36,
+  title: "Durood-e-Afzal",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ كَمَا هُوَ أَهْلُهُ وَكَمَا تُحِبُّ وَتَرْضَى لَهُ",
+  transliteration: "Allahumma salli 'ala Muhammadin kama huwa ahluhu wa kama tuhibbu wa tarda lah.",
+  translation: "O Allah, send blessings upon Muhammad as befits his exalted worth, and as You love and are pleased for him.",
+  virtue: "A comprehensive salawat that covers the complete praise deserving of the Prophet ﷺ."
+},
+{
+  id: 37,
+  title: "Durood-e-Hazaarah",
+  tags: ["popular", "protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِ سَيِّدِنَا مُحَمَّدٍ صَلاَةً تُنْجِينَا بِهَا مِنْ جَمِيعِ الأَهْوَالِ وَالأَفَاتِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin wa 'ala ali Sayyidina Muhammadin salatan tunjina biha min jami'il-ahwali wal-afat.",
+  translation: "O Allah, send blessings upon our Master Muhammad and his family, such blessings that save us from all terrors and calamities.",
+  virtue: "Recited 1000 times for overwhelming distress or urgent needs to seek immediate divine intervention."
+},
+{
+  id: 38,
+  title: "Durood-e-Deedar-e-Mustafa",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ النَّبِيِّ الأُمِّيِّ الْحَبِيبِ الْعَالِي الْقَدْرِ الْعَظِيمِ الْجَاهِ وَعَلَى آلِهِ وَصَحْبِهِ وَسَلِّمْ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin an-Nabiyyil-Ummiyyil-Habibil-'Alil-Qadril-'Azimil-Jahi wa 'ala alihi wa sahbihi wa sallim.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the Unlettered Prophet, the Beloved, of high rank and lofty status, and upon his Family and Companions.",
+  virtue: "Recited on Thursday night before sleep with purity for the blessed vision (Ziyarat) of the Prophet ﷺ in a dream."
+},
+{
+  id: 39,
+  title: "Durood-e-Akseer-e-Azam",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَلاَةً تُعَظِّمُ بِهَا شَأْنَهُ وَتُوَضِّحُ بِهَا بُرْهَانَهُ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin salatan tu'azzimu biha sha'nahu wa tuwadihu biha burhanah.",
+  translation: "O Allah, send blessings upon our Master Muhammad, such blessings that magnify his status and clarify his proof.",
+  virtue: "Known as the Great Alchemy (Akseer-e-Azam) for spiritual purification and clearing worldly obstacles."
+},
+{
+  id: 40,
+  title: "Durood-e-Wasilah",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ آتِ مُحَمَّدَنِ الْوَسِيلَةَ وَالْفَضِيلَةَ وَابْعَثْهُ مَقَاماً مَحْمُودَنِ الَّذِي وَعَدْتَهُ",
+  transliteration: "Allahumma ati Muhammadan il-wasilata wal-fadilata wab'athhu maqaman mahmudan alladhi wa'adtah.",
+  translation: "O Allah, grant Muhammad the Wasilah (highest station in Paradise) and virtue, and resurrect him to the praised status You promised him.",
+  virtue: "Recited after hearing the Adhan to secure the intercession of the Prophet ﷺ on the Day of Judgment."
+},
+{
+  id: 41,
+  title: "Durood-e-Awal",
+  tags: ["popular"],
+  arabic: "أَفْضَلُ الصَّلاَةِ عَلَى سَيِّدِ السَّادَاتِ وَأَكْرَمِ الأَئِمَّةِ وَالْهُدَاةِ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
+  transliteration: "Afdalus-salati 'ala Sayyidis-sadati wa akramil-a'immati wal-hudati Muhammadin Sallallahu 'alaihi wa sallam.",
+  translation: "The most virtuous blessings upon the Master of masters, the most noble of guides and leaders, Muhammad ﷺ.",
+  virtue: "Enhances leadership qualities, wisdom, and steadfastness on the straight path."
+},
+{
+  id: 42,
+  title: "Durood-e-Habib",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ حَبِيبِ الرَّحْمَنِ وَشَفِيعِ الأَنَامِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Habibir-Rahmani wa Shafi'il-anam.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the Beloved of the Most Merciful and the intercessor of mankind.",
+  virtue: "Instills genuine love for Allah and His Messenger in the reciter's heart."
+},
+{
+  id: 43,
+  title: "Durood-e-Rizq",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ عَبْدِكَ وَرَسُولِكَ وَعَلَى الْمُؤْمِنِينَ وَالْمُؤْمِنَاتِ وَارْزُقْنَا رِزْقاً حَلاَلاً طَيِّباً",
+  transliteration: "Allahumma salli 'ala Muhammadin 'abdika wa rasoolika wa 'alal-mu'minina wal-mu'minati warzuqna rizqan halalan tayyiba.",
+  translation: "O Allah, send blessings upon Muhammad, Your servant and Messenger, and upon believing men and women, and grant us pure and halal sustenance.",
+  virtue: "Recited for abundance in lawful livelihood (Rizq-e-Halal) and freedom from debt."
+},
+{
+  id: 44,
+  title: "Durood-e-Dawam-e-Nabuwat",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ النَّبِيِّ الخَاتَمِ الَّذِي لاَ نَبِيَّ بَعْدَهُ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin an-Nabiyyil-Khatami alladhi la nabiyya ba'dah.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the Final Prophet after whom there is no other prophet.",
+  virtue: "Affirms faith in the finality of Prophet Muhammad's ﷺ prophethood and protects Iman."
+},
+{
+  id: 45,
+  title: "Durood-e-Bahar",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَلاَةً تُزْهِرُ بِهَا الأَعْمَالُ وَتَخْضَرُّ بِهَا الأَحْوَالُ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin salatan tuzhiru bihal-a'malu wa takhdarru bihal-ahwal.",
+  translation: "O Allah, send blessings upon our Master Muhammad, such blessings that cause good deeds to bloom and circumstances to flourish.",
+  virtue: "Brings spiritual freshness, growth, and positivity into daily life."
+},
+{
+  id: 46,
+  title: "Durood-e-Aafiyat",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَلاَةً تَهَبُ لَنَا بِهَا الْعَافِيَةَ فِي الدُّنْيَا وَالآخِرَةِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin salatan tahabu lana bihal-'afiyata fid-dunya wal-akhirah.",
+  translation: "O Allah, send blessings upon our Master Muhammad, such blessings that grant us complete well-being in this world and the Hereafter.",
+  virtue: "Preserves physical health, mental safety, and protection against sudden calamities."
+},
+{
+  id: 47,
+  title: "Durood-e-Tahirat",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ الطَّاهِرِ الْمُطَهَّرِ وَعَلَى آلِهِ الأَطْهَارِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin it-Tahiril-Mutahhari wa 'ala alihil-athar.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the pure and purified one, and upon his pure family.",
+  virtue: "Helps purify inner thoughts, guards against negative habits, and enhances spiritual hygiene."
+},
+{
+  id: 48,
+  title: "Durood-e-Hikmat",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ مَدِينَةِ الْعِلْمِ وَعَلَى آلِهِ بَابِ الْحِكْمَةِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Madinatil-'Ilmi wa 'ala alihi Babil-Hikmah.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the City of Knowledge, and upon his family, the Gate of Wisdom.",
+  virtue: "Recited by students and scholars for memory retention, sharpness of intellect, and clarity in study."
+},
+{
+  id: 49,
+  title: "Durood-e-Salam",
+  tags: ["popular"],
+  arabic: "السَّلاَمُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ",
+  transliteration: "As-salamu 'alaika ayyuhan-Nabiyyu wa rahmatullahi wa barakatuh.",
+  translation: "Peace be upon you, O Prophet, and the mercy of Allah and His blessings.",
+  virtue: "Direct greeting recited in every Tashahhud; conveys greetings to the Rawda Shareef via angels."
+},
+{
+  id: 50,
+  title: "Durood-e-Izzat",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ العَزِيزِ المَجِيدِ وَعَلَى آلِهِ وَصَحْبِهِ وَسَلِّمْ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin al-'Azizil-Majidi wa 'ala alihi wa sahbihi wa sallim.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the Mighty and Glorious, and upon his Family and Companions.",
+  virtue: "Grants dignity, respect, and honorable standing among people."
+},
+{
+  id: 51,
+  title: "Durood-e-Muqaddas",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ فِي كُلِّ لَحْظَةٍ أَبَداً عَدَدَ خَلْقِكَ وَرِضَاءَ نَفْسِكَ وَزِنَةَ عَرْشِكَ وَمِدَادَ كَلِمَاتِكَ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin fi kulli lahzatin abadan 'adada khalqika wa rida nafsika wa zinata 'arshika wa midada kalimatik.",
+  translation: "O Allah, send blessings upon our Master Muhammad in every moment forever, as many times as the number of Your creation, Your self-pleasure, the weight of Your Throne, and the ink of Your words.",
+  virtue: "A holy salawat carrying vast rewards beyond human count."
+},
+{
+  id: 52,
+  title: "Durood-e-Siddeeq",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى أَبِي بَكْرٍ الصِّدِّيقِ رَضِيَ اللَّهُ عَنْهُ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin wa 'ala Abi Bakrin as-Siddiq radiyallahu 'anh.",
+  translation: "O Allah, send blessings upon our Master Muhammad and be pleased with Abu Bakr as-Siddiq.",
+  virtue: "Strengthens truthfulness, loyalty, and sincerity in faith."
+},
+{
+  id: 53,
+  title: "Durood-e-Farooq",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى عُمَرَ الْفَارُوقِ الَّذِي أَعَزَّ اللَّهُ بِهِ الإِسْلاَمَ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin wa 'ala 'Umaral-Farooq alladhi a'azzallahu bihil-Islam.",
+  translation: "O Allah, send blessings upon our Master Muhammad and upon Umar al-Farooq through whom Allah honored Islam.",
+  virtue: "Inspires justice, courage, and distinction between right and wrong."
+},
+{
+  id: 54,
+  title: "Durood-e-Usman",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى عُثْمَانَ ذِي النُّورَيْنِ الصَّابِرِ الشَّكُورِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin wa 'ala 'Uthmana Dhin-Nuraini as-Sabiris-Shakur.",
+  translation: "O Allah, send blessings upon our Master Muhammad and upon Usman Dhun-Nurayn, the patient and grateful.",
+  virtue: "Fosters modesty, generosity, and patience during tribulations."
+},
+{
+  id: 55,
+  title: "Durood-e-Murtaza",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى عَلِيٍّ الْمُرْتَضَى إِمَامِ الْمُتَّقِينَ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin wa 'ala 'Aliyyin il-Murtada Imamil-muttaqin.",
+  translation: "O Allah, send blessings upon our Master Muhammad and upon Ali al-Murtada, leader of the God-fearing.",
+  virtue: "Builds spiritual strength, bravery, and deep knowledge of Islamic principles."
+},
+// Part 4 Dataset: Final set to complete your 85+ Durood database
+{
+  id: 56,
+  title: "Durood-e-Hasani",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى الْحَسَنِ سَيِّدِ شَبَابِ أَهْلِ الْجَنَّةِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin wa 'alal-Hasani sayyidi shababi ahlil-jannah.",
+  translation: "O Allah, send blessings upon our Master Muhammad and upon Hasan, the leader of the youth of Paradise.",
+  virtue: "Brings peace, noble character, and harmony to households."
+},
+{
+  id: 57,
+  title: "Durood-e-Husaini",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى الْحُسَيْنِ الشَّهِيدِ وَسَبْطِ الرَّسُولِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin wa 'alal-Husainis-shahidi wa sabtir-Rasool.",
+  translation: "O Allah, send blessings upon our Master Muhammad and upon Husain, the martyr and grandson of the Messenger.",
+  virtue: "Instills steadfastness, perseverance in truth, and protection against injustice."
+},
+{
+  id: 58,
+  title: "Durood-e-Ahl al-Bayt",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِ بَيْتِهِ الطَّاهِرِينَ الأَطْهَارِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin wa 'ala Aali Baytihit-tahirinal-athar.",
+  translation: "O Allah, send blessings upon our Master Muhammad and upon his pure, clean household.",
+  virtue: "Honors the noble family of the Prophet ﷺ and earns divine affection."
+},
+{
+  id: 59,
+  title: "Durood-e-Azam",
+  tags: ["popular", "protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ أَفْضَلِ الأَنْبِيَاءِ وَأَكْرَمِ الصَّفِيَّاءِ وَسَلِّمْ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin afdalil-anbiya'i wa akramis-safiyya'i wa sallim.",
+  translation: "O Allah, send peace and blessings upon our Master Muhammad, the most virtuous of Prophets and the most noble of the chosen.",
+  virtue: "A magnificent salawat for high spiritual ranks and divine protection."
+},
+{
+  id: 60,
+  title: "Durood-e-Fath",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ الْفَاتِحِ لِمَا أُغْلِقَ وَالْخَاتِمِ لِمَا سَبَقَ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin al-fatihi lima ughliqa wal-khatimi lima sabaq.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the opener of what was closed and the seal of what went before.",
+  virtue: "Recited to unlock closed opportunities, overcome hardships, and gain success."
+},
+{
+  id: 61,
+  title: "Durood-e-Nasir",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ نَاصِرِ الْحَقِّ بِالْحَقِّ وَالْهَادِي إِلَى صِرَاطِكَ الْمُسْتَقِيمِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin nasiril-haqqi bil-haqqi wal-hadi ila siratikal-mustaqim.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the helper of the truth with truth, and the guide to Your straight path.",
+  virtue: "Grants victory over falsehood and steadfastness on the path of righteousness."
+},
+{
+  id: 62,
+  title: "Durood-e-Qudsi",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَلاَةً تُقَدِّسُ بِهَا نُفُوسَنَا وَتُطَهِّرُ بِهَا قُلُوبَنَا",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin salatan tuqaddisu biha nufusana wa tutahhiru biha qulubana.",
+  translation: "O Allah, send blessings upon our Master Muhammad, such blessings that sanctify our souls and purify our hearts.",
+  virtue: "Purifies the heart from worldly greed, envy, and spiritual diseases."
+},
+{
+  id: 63,
+  title: "Durood-e-Shukr",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ حَمْداً وَشُكْراً لِلَّهِ عَلَى كُلِّ نِعْمَةٍ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin hamdan wa shukran lillahi 'ala kulli ni'mah.",
+  translation: "O Allah, send blessings upon our Master Muhammad with praise and gratitude to Allah for every blessing.",
+  virtue: "Expresses gratitude for divine favors and increases blessings (*Barakah*)."
+},
+{
+  id: 64,
+  title: "Durood-e-Noor al-Huda",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ نُورِ الْهُدَى وَإِمَامِ الْمُتَّقِينَ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Nuril-Huda wa Imamil-Muttaqin.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the Light of Guidance and Leader of the God-fearing.",
+  virtue: "Illuminates mind and soul, guiding the reciter toward righteous choices."
+},
+{
+  id: 65,
+  title: "Durood-e-Siddiqiyya",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ الصَّادِقِ الأَمِينِ وَعَلَى آلِهِ وَأَصْحَابِهِ أَجْمَعِينَ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin as-Sadiqil-Ameen wa 'ala alihi wa as-habihi ajma'in.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the Truthful, the Trustworthy, and upon all his Family and Companions.",
+  virtue: "Helps establish honesty, trustworthiness, and strong credibility in business and personal relationships."
+},
+{
+  id: 66,
+  title: "Durood-e-Aman",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ أَمَانِ الأُمَّةِ وَسِرَاجِ الظُّلْمَةِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Amanil-Ummah wa Sirajid-zulmah.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the safeguard of the nation and the lamp in darkness.",
+  virtue: "Recited for safety during travel, protection against fear, and security from harm."
+},
+{
+  id: 67,
+  title: "Durood-e-Rehmat",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ نَبِيِّ الرَّحْمَةِ وَشَفِيعِ الأُمَّةِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Nabiyyir-Rahmati wa Shafi'il-Ummah.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the Prophet of Mercy and the Intercessor of the Ummah.",
+  virtue: "Attracts Allah's mercy and helps ease hardships in times of emotional or financial distress."
+},
+{
+  id: 68,
+  title: "Durood-e-Kashf",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ الكَاشِفِ لِلْغُمَّةِ وَالْمُنِيرِ لِلظُّلْمَةِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin al-Kashifi lil-ghummah wal-muniri lid-zulmah.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the remover of grief and the illuminator of darkness.",
+  virtue: "Recited to relieve anxiety, dispel sadness, and clarify mental confusion."
+},
+{
+  id: 69,
+  title: "Durood-e-Ikhlas",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَلاَةً خَالِصَةً لِوَجْهِكَ الْكَرِيمِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin salatan khalisatan li-wajhikal-karim.",
+  translation: "O Allah, send blessings upon our Master Muhammad with absolute sincerity for Your Noble Countenance.",
+  virtue: "Purifies intentions (Niyyah) and increases sincerity (*Ikhlas*) in all acts of worship."
+},
+{
+  id: 70,
+  title: "Durood-e-Najah",
+  tags: ["popular", "protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَلاَةً نَنَالُ بِهَا النَّجَاةَ مِنَ النَّارِ وَالْفَوْزَ بِالْجَنَّةِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin salatan nanalu bihan-najata minan-nari wal-fawza bil-jannah.",
+  translation: "O Allah, send blessings upon our Master Muhammad, such blessings through which we attain salvation from the Fire and success in Paradise.",
+  virtue: "Recited for ultimate success in the Hereafter and protection against eternal loss."
+},
+{
+  id: 71,
+  title: "Durood-e-Khair",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ مَفْتَاحِ الخَيْرِ وَمَغْلاَقِ الشَّرِّ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Miftahil-Khairi wa Maghlaqis-Sharr.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the key to all goodness and the lock against all evil.",
+  virtue: "Opens doors of good opportunities and shields against malicious influences."
+},
+{
+  id: 72,
+  title: "Durood-e-Baqi",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَلاَةً دَائِمَةً بَقَاءَ الدَّهْرِ وَالزَّمَانِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin salatan da'imatan baqa'ad-dahri waz-zaman.",
+  translation: "O Allah, send blessings upon our Master Muhammad, an eternal blessing lasting for all epoch and time.",
+  virtue: "Establishes long-lasting spiritual rewards that continue benefiting the reciter."
+},
+{
+  id: 73,
+  title: "Durood-e-Nurani",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ نُورِ الأَنْوَارِ وَسِرِّ الأَسْرَارِ وَتِرْيَاقِ الأَغْيَارِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin nuril-anwar wa sirril-asrar wa tiryaqil-aghyar.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the light of lights, secret of secrets, and antidote to worldly illusions.",
+  virtue: "Illuminates spiritual perception and brings deep clarity of mind."
+},
+{
+  id: 74,
+  title: "Durood-e-Subhan",
+  tags: ["popular"],
+  arabic: "سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ وَصَلَّى اللَّهُ عَلَى النَّبِيِّ الأُمِّيِّ",
+  transliteration: "Subhanallahi wal-hamdu lillahi wa la ilaha illallahu wallahu akbaru wa sallallahu 'alan-Nabiyyil-Ummiy.",
+  translation: "Glory be to Allah, praise be to Allah, there is no god but Allah, Allah is the Greatest, and blessings be upon the Unlettered Prophet.",
+  virtue: "Combines Tasbeeh, Tahmeed, Tahlil, Takbeer, and Salawat into a single powerful remembrance."
+},
+{
+  id: 75,
+  title: "Durood-e-Jami'",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ جَامِعِ المَحَاسِنِ كُلِّهَا وَعَلَى آلِهِ وَسَلِّمْ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Jami'il-mahasini kulliha wa 'ala alihi wa sallim.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the gatherer of all virtues, and upon his Family and grant peace.",
+  virtue: "A comprehensive Durood acknowledging all perfection and noble character traits of the Prophet ﷺ."
+},
+{
+  id: 76,
+  title: "Durood-e-Wafa",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَفَاءِ الْعَهْدِ وَصَادِقِ الْوَعْدِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Wafa'il-'ahdi wa Sadiqil-wa'd.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the fulfiller of covenants and the true to his promises.",
+  virtue: "Encourages reliability, loyalty, and fulfillment of promises in personal life."
+},
+{
+  id: 77,
+  title: "Durood-e-Hifz",
+  tags: ["protection"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ حَافِظِ الشَّرِيعَةِ وَمُظْهِرِ الْحَقِيقَةِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Hafizish-Shari'ati wa Muzhiril-Haqiqah.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the preserver of Sacred Law and the standard-bearer of Truth.",
+  virtue: "Protects the reciter's faith, family, and home from physical and spiritual harm."
+},
+{
+  id: 78,
+  title: "Durood-e-Karam",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّDِنَا مُحَمَّدٍ مَعْدِنِ الْكَرَمِ وَأَصْلِ الشَّرَفِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Ma'dinil-karami wa Aslish-sharaf.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the source of generosity and the root of honor.",
+  virtue: "Attracts divine generosity and elevates one's self-respect and dignity."
+},
+{
+  id: 79,
+  title: "Durood-e-Falah",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَلاَةً نَنَالُ بِهَا الْفَلاَحَ فِي الدَّارَيْنِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin salatan nanalu bihal-falaha fid-darain.",
+  translation: "O Allah, send blessings upon our Master Muhammad, such blessings through which we achieve prosperity in both worlds.",
+  virtue: "Recited for well-rounded success in career, education, health, and spiritual affairs."
+},
+{
+  id: 80,
+  title: "Durood-e-Safa",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ صَفْوَةِ الْخَلْقِ وَخَلاَصَةِ الْوُجُودِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Safwatil-khalqi wa Khasatil-wujud.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the elite of creation and the essence of existence.",
+  virtue: "Cleanses heart pollution, envy, and spiritual arrogance."
+},
+{
+  id: 81,
+  title: "Durood-e-Siraj",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ السِّرَاجِ الْمُنِيرِ فِي اللَّيْلِ الْبَهِيمِ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin as-Sirajil-muniri fil-laylib-bahim.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the shining lamp in the pitch-black night.",
+  virtue: "Brings clarity and hope during periods of deep personal crisis or confusion."
+},
+{
+  id: 82,
+  title: "Durood-e-Barkat",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَبَارِكْ عَلَى سَيِّدِنَا مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin wa barik 'ala Sayyidina Muhammadin kama barakta 'ala Ibrahim.",
+  translation: "O Allah, send blessings upon our Master Muhammad and bless our Master Muhammad just as You blessed Ibrahim.",
+  virtue: "Multiplies blessings in food, wealth, family time, and health."
+},
+{
+  id: 83,
+  title: "Durood-e-Taqwa",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ إِمَامِ الْمُتَّقِينَ وَزَيْنِ الْعَابِدِينَ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Imamil-muttaqina wa Zainil-'abidin.",
+  translation: "O Allah, send blessings upon our Master Muhammad, leader of the God-fearing and adornment of the worshippers.",
+  virtue: "Strengthens willpower to refrain from sins and perform acts of worship regularly."
+},
+{
+  id: 84,
+  title: "Durood-e-A'zam al-Barakah",
+  tags: ["popular", "protection"],
+  arabic: "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى سَيِّدِنَا مُحَمَّدٍ حَبِيبِكَ الْمُصْطَفَى وَعَلَى آلِهِ وَصَحْبِهِ وَسَلِّمْ تَسْلِيماً كَثِيراً",
+  transliteration: "Allahumma salli wa sallim wa barik 'ala Sayyidina Muhammadin habibikal-Mustafa wa 'ala alihi wa sahbihi wa sallim tasliman kathira.",
+  translation: "O Allah, send blessings, peace, and abundance upon our Master Muhammad, Your chosen Beloved, and upon his Family and Companions in abundant salutations.",
+  virtue: "A comprehensive salawat invoking complete peace, blessings, and protection."
+},
+{
+  id: 85,
+  title: "Durood-e-Khatam",
+  tags: ["popular"],
+  arabic: "اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ خَاتَمِ النَّبِيِّينَ وَشَفِيعِ الْمُذْنِبِينَ وَعَلَى آلِهِ وَصَحْبِهِ وَسَلِّمْ",
+  transliteration: "Allahumma salli 'ala Sayyidina Muhammadin Khatamin-Nabiyyina wa Shafi'il-mudhnibina wa 'ala alihi wa sahbihi wa sallim.",
+  translation: "O Allah, send blessings upon our Master Muhammad, the Seal of the Prophets, the Intercessor for sinners, and upon his Family and Companions.",
+  virtue: "Ideal closing Salawat to conclude daily wazaif and gatherings of dhikr."
+}
+    ];
+
+    /* ENTRANCE SCREEN LOGIC */
+    const entranceScreen = document.getElementById('entrance-screen');
+    const enterBtn = document.getElementById('enter-btn');
+
+    function exitEntrance() {
+      entranceScreen.classList.add('hidden');
+    }
+
+    enterBtn.addEventListener('click', exitEntrance);
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !entranceScreen.classList.contains('hidden')) {
+        exitEntrance();
+      }
+    });
+
+    /* CARDS & INTERACTION */
+    const cardsContainer = document.getElementById('cards-container');
+    const searchInput = document.getElementById('search-input');
+    const pillBtns = document.querySelectorAll('.pill-btn');
+    let currentTag = 'all';
+    let countsState = {};
+    let currentArabicSize = 2.2;
+
+    function renderCards(data) {
+      cardsContainer.innerHTML = '';
+      document.getElementById('showing-count').innerText = `SHOWING ${data.length} SALAWAT RECITATIONS`;
+
+      data.forEach(item => {
+        const count = countsState[item.id] || 0;
+        const card = document.createElement('div');
+        card.className = 'durood-card';
+        card.innerHTML = `
+          <div class="card-top">
+            <span class="tag-number">DUROOD #${item.id}</span>
+            <div class="actions-row">
+              <button class="btn-badge btn-counter-badge" onclick="incrementCount(${item.id}, this)">
+                Count: <strong id="count-${item.id}">${count}</strong>
+              </button>
+              <button class="btn-badge" onclick="copyDurood('${item.title}', '${item.transliteration}', this)">
+                <i class="fa-regular fa-copy"></i> Copy
+              </button>
+            </div>
+          </div>
+          <h2 class="card-title">${item.title}</h2>
+          <div class="arabic-display" style="font-size: ${currentArabicSize}rem">${item.arabic}</div>
+          <p class="transliteration">${item.transliteration}</p>
+          <p class="translation">${item.translation}</p>
+        `;
+        cardsContainer.appendChild(card);
+      });
+    }
+
+    function incrementCount(id, btn) {
+      countsState[id] = (countsState[id] || 0) + 1;
+      document.getElementById(`count-${id}`).innerText = countsState[id];
+      btn.style.transform = 'scale(0.92)';
+      setTimeout(() => btn.style.transform = 'scale(1)', 100);
+    }
+
+    function copyDurood(title, text, btn) {
+      navigator.clipboard.writeText(`${title}:\n${text}`);
+      const origText = btn.innerHTML;
+      btn.innerHTML = `<i class="fa-solid fa-check"></i> Copied`;
+      setTimeout(() => btn.innerHTML = origText, 1500);
+    }
+
+    function adjustArabicSize(delta) {
+      currentArabicSize = Math.max(1.4, Math.min(3.2, currentArabicSize + (delta * 0.1)));
+      document.querySelectorAll('.arabic-display').forEach(el => {
+        el.style.fontSize = `${currentArabicSize}rem`;
+      });
+    }
+
+    /* FILTERS */
+    function filterData() {
+      const query = searchInput.value.toLowerCase();
+      const filtered = duroodDatabase.filter(item => {
+        const matchesTag = currentTag === 'all' || item.tags.includes(currentTag);
+        const matchesSearch = item.title.toLowerCase().includes(query) || item.transliteration.toLowerCase().includes(query);
+        return matchesTag && matchesSearch;
+      });
+      renderCards(filtered);
+    }
+
+    searchInput.addEventListener('input', filterData);
+    pillBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        pillBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentTag = btn.getAttribute('data-tag');
+        filterData();
+      });
+    });
+
+    renderCards(duroodDatabase);
+  </script>
+</body>
+</html>
